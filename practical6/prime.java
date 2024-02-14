@@ -42,7 +42,7 @@ class Prime {
     	}
     	public static String generateRandomNum() {
     		Random random = new Random();
-        	int randomNum = random.nextInt(1000000);
+        	int randomNum = random.nextInt(10000000);
         	return String.valueOf(randomNum);
     	}
 }
