@@ -6,7 +6,7 @@ class Prime {
 		String[] myarray = new String[100000];
 		Prime prime = new Prime();
 		
-		String randomNum = generateRandomNum();
+		String randomNum = generateRandomNum(prime);
         	System.out.println(randomNum);
         	
         	for (int i = 0; i < myarray.length; i++) {
@@ -28,7 +28,7 @@ class Prime {
 		}
 		return new int[]{countPrime, countNonPrime};
 	}
-	public boolean isPrime(int num) {
+	public static boolean isPrime(int num) {
 		if (num < 2) {
             		return false;
         	}
@@ -40,9 +40,12 @@ class Prime {
         	}
        		return true;
     	}
-    	public static String generateRandomNum() {
+    	public static String generateRandomNum(Prime prime) {
     		Random random = new Random();
-        	int randomNum = random.nextInt(10000000);
+        	int randomNum;
+        	do {
+        		randomNum =  1000000 + random.nextInt(9000000);
+        	} while(!prime.isPrime(randomNum));
         	return String.valueOf(randomNum);
     	}
 }
