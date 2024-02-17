@@ -1,25 +1,51 @@
-import java.util.Random;
 class Prime {
 	int countPrime;
 	int countNonPrime;
 	public static void main(String[] args) {
-		String[] myarray = new String[100000];
 		Prime prime = new Prime();
-		
-		String randomNum = generateRandomNum(prime);
-        	System.out.println(randomNum);
-        	
-        	for (int i = 0; i < myarray.length; i++) {
-            		myarray[i] = randomNum;
-        	}
-		int[] counts = prime.checkPrimeNum(myarray);
-
-        	//System.out.println("Count of Prime Numbers: " + counts[0]);
-        	//System.out.println("Count of Non-Prime Numbers: " + counts[1]);
+		int[] numbers = prime.generateRandomNumArray(1000000);
+	
+		int i = 1;
+		while(i<=5) {
+			System.out.println("Iteration No: " + i);
+			
+			long startTime = System.nanoTime();
+			int[] counts = prime.checkPrime(numbers);
+			long endTime = System.nanoTime();
+        		System.out.println("Time required for appr 1: "+ (endTime - startTime) + " nanoSeconds");
+        		
+        		startTime = System.nanoTime();
+			int[] inverted_counts = prime.checkNonPrime(numbers);
+			endTime = System.nanoTime();
+        		System.out.println("Time required for appr 2: "+ (endTime - startTime) + " nanoSeconds");
+        		i++;
+        		System.out.println();
+		}
 	}
-	public int[] checkPrimeNum(String[] array ) {
-		for(int i = 0;i < array.length; i++) {
-			if(isPrime(Integer.parseInt(array[i]))) {
+	public int[] generateRandomNumArray(int size) {
+    		int[] numbers = new int[size];
+    		for(int i = 0; i < size; i++) {
+    			numbers[i] = generaterandomNumber();
+    		}
+    		return numbers;
+    	}
+    	public int generaterandomNumber() {
+    		int n = generaterandomDigit();
+    		int num = n;
+    		for(int i = 0; i < 6; i++) {
+    			int digit = generaterandomDigit();
+    			num = num * 10 + digit;
+    		}
+    		return num;
+    	}
+    	public int generaterandomDigit() {
+    		int t = (int) System.nanoTime();
+    		int digit = t % 10;
+    		return digit;
+    	}
+	public int[] checkPrime(int[] numbers) {
+		for(int number : numbers) {
+			if(isPrime(number)) {
 				countPrime++;
 			}
 			else {
@@ -28,24 +54,27 @@ class Prime {
 		}
 		return new int[]{countPrime, countNonPrime};
 	}
-	public static boolean isPrime(int num) {
-		if (num < 2) {
+	public int[] checkNonPrime(int[] numbers) {
+		for(int number : numbers) {
+			if(!isPrime(number)) {
+				countNonPrime++;
+			}
+			else {
+				countPrime++;
+			}
+		} 
+		return new int[]{countNonPrime,countPrime};
+	}
+	public static boolean isPrime(int number) {
+		if (number < 2) {
             		return false;
         	}
 
-        	for (int i = 2; i <= Math.sqrt(num); i++) {
-            		if (num % i == 0) {
+        	for (int i = 2; i * i <= number; i++) {
+            		if (number % i == 0) {
                 		return false;
             		}
         	}
        		return true;
-    	}
-    	public static String generateRandomNum(Prime prime) {
-    		Random random = new Random();
-        	int randomNum;
-        	do {
-        		randomNum =  1000000 + random.nextInt(9000000);
-        	} while(!prime.isPrime(randomNum));
-        	return String.valueOf(randomNum);
     	}
 }
