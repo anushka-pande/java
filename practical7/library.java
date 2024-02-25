@@ -106,6 +106,7 @@ class LibraryManagementSystem {
         	System.out.println(student.checkpenalty());
         	System.out.println(staff.checkIssuedBooks());
         	System.out.println(staff.returnBook("B001"));
-        	System.out.println(staff.checkIssuedBooks());*/
+        	System.out.println(staff.checkIssuedBooks());
+        	System.out.println(staff.paypenalty());*/
 	}
 }
