@@ -62,7 +62,7 @@ class LibraryStaff extends LibraryUser {
 	public LibraryStaff(String name,int id) {
 		super(name,id,false);
 	}
-	public String issue(String BookId) {
+	public String issueBook(String BookId) {
 		int days = isStudent ? 15 : 20;
 		extraDays = days;
 		LocalDate currentDate = LocalDate.now();
@@ -72,7 +72,7 @@ class LibraryStaff extends LibraryUser {
 		issuedBooks++;
 		return formattedDueDate;
 	}
-	public String renew(String BookId) {
+	public String renewBook(String BookId) {
 		int days = isStudent ? 15 : 20;
 		extraDays += days;
 		LocalDate currentDate = LocalDate.now();
@@ -93,12 +93,12 @@ class LibraryStaff extends LibraryUser {
 }
 class LibraryManagementSystem {
 	public static void main(String[] args) {
-		Student student = new Student("Anushka",42);
+		/*Student student = new Student("Anushka",42);
 		Faculty faculty = new Faculty("Prof.XYZ",392);
 		LibraryStaff staff = new LibraryStaff("Librarian",2992);
 		
-		String DueDate = staff.issue("B001");
-		String NewDueDate = staff.renew("B001");
+		String DueDate = staff.issueBook("B001");
+		String NewDueDate = staff.renewBook("B001");
 
 		System.out.println(DueDate);
         	System.out.println(NewDueDate);
@@ -106,6 +106,6 @@ class LibraryManagementSystem {
         	System.out.println(student.checkpenalty());
         	System.out.println(staff.checkIssuedBooks());
         	System.out.println(staff.returnBook("B001"));
-        	System.out.println(staff.checkIssuedBooks());
+        	System.out.println(staff.checkIssuedBooks());*/
 	}
 }
