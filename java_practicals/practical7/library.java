@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 class LibraryUser {
@@ -21,18 +22,24 @@ class LibraryUser {
 	}
 	public boolean paypenalty() {
 		if(isPenaltyPaid) {
+			System.out.println("You have already paid the penalty.");
 			return true;
 		}
 		else {
+			System.out.println("Penalty amount: $" + amount);
+			System.out.println("Penalty paid successfully");
+			isPenaltyPaid = true;
 			return false;
 		}
 	}
 	public int checkpenalty() {
 		amount = 2 * extraDays;
 		if(isPenaltyPaid) {
+			System.out.println("No pending penalty");
 			return 0;
 		}
 		else {
+			System.out.println("Penalty amount: $" + amount);
 			return amount;
 		}
 	}
@@ -93,7 +100,7 @@ class LibraryStaff extends LibraryUser {
 }
 class LibraryManagementSystem {
 	public static void main(String[] args) {
-		/*Student student = new Student("Anushka",42);
+		Student student = new Student("Anushka",42);
 		Faculty faculty = new Faculty("Prof.XYZ",392);
 		LibraryStaff staff = new LibraryStaff("Librarian",2992);
 		
@@ -107,6 +114,5 @@ class LibraryManagementSystem {
         	System.out.println(staff.checkIssuedBooks());
         	System.out.println(staff.returnBook("B001"));
         	System.out.println(staff.checkIssuedBooks());
-        	System.out.println(staff.paypenalty());*/
 	}
 }
