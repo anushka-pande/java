@@ -7,7 +7,7 @@ class Main {
 		
 		String userName = obj.nextLine();                      //Reads string
 		int age = obj.nextInt();                               //Reads Integer
-		double salary = obj.nextDouble();
+		double salary = obj.nextDouble();                      //Reads Double
 		
 		System.out.println("Username: " + userName);
 		System.out.println("Age: " + age);
