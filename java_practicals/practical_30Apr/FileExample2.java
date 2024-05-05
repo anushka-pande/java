@@ -8,7 +8,7 @@ class FileExample2 {
 		try {
 			file.createNewFile();
 			System.out.println("File Created Successfully");
-			JOptionPane.showMessageDialog(null, "File is created", "demo", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "File is created", "demo", JOptionPane.INFORMATION_MESSAGE);
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
