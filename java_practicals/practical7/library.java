@@ -4,6 +4,12 @@ import java.util.List;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+class BookNotFoundException extends Exception {
+	public BookNotFoundException(String message) {
+		super(message);
+	}
+}
+
 class Book {
 	private String id;
 	private String title;
@@ -12,9 +18,11 @@ class Book {
 		this.id = id;
 		this.title = title;
 	}
+	
 	public String getId() {
 		return id;
 	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -45,14 +53,23 @@ class Library {
 	}
 	
 	public void removeBook(String bookId) {
+		boolean found = false;
 		for(Book book : books) {
 			if(book.getId().equals(bookId)) {
 				books.remove(book);
 				System.out.println("Book with Id " + bookId + " removed from the library.");
-				return;
+				found = true;
+				break;
 			}
 		}
-		System.out.println("Book wiht Id " + bookId + " not found in the library.");
+		if(!found) {
+			try {
+				throw new BookNotFoundException("Book wiht Id " + bookId + " not found in the library.");
+			}
+			catch(BookNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
 
